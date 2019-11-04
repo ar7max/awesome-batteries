@@ -18,12 +18,14 @@ defmodule AwesomeBatteriesWeb.PageViewTest do
   test "group_repos_by_categories/1 should return repos grouped by categories" do
     repos = AwesomeBatteries.fetch_repos()
 
-    assert AwesomeBatteriesWeb.PageView.group_repos_by_categories(repos) == %{
-        "Actors" => [
-          %{category: "Actors", name: "dflow", owner: "dalmatinerdb"},
-          %{category: "Actors", name: "exactor", owner: "sasa1977"}
-        ]
-      }
+    grouped_by_categories = AwesomeBatteriesWeb.PageView.group_repos_by_categories(repos)
+
+    assert grouped_by_categories |> Map.keys() == ["Actors"]
+
+    assert grouped_by_categories["Actors"] |> Enum.map(fn r -> Map.take(r, [:category, :name, :owner]) end) == [
+      %{category: "Actors", name: "dflow", owner: "dalmatinerdb"},
+      %{category: "Actors", name: "exactor", owner: "sasa1977"}
+    ]
 
   end
 
