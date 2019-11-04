@@ -28,6 +28,7 @@ config :phoenix, :json_library, Jason
 config :awesome_batteries, AwesomeBatteries.Scheduler,
   jobs: [
     # Runs every midnight:
+    # {"*/30 * * * *",         {AwesomeBatteries, :sync_data, []}},
     {"@daily",         {AwesomeBatteries, :sync_data, []}},
   ]
 
