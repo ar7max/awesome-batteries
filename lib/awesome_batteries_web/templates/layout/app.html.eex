@@ -18,8 +18,8 @@
         <img 
           width="100px"
           src="http://i.imgur.com/IU8A1ky.gif"
-          style="border-radius: 10px; border: 1px solid black;"
-        />
+          style="border-radius: 30px; border: 5px dotted rgba(217, 237, 247, 0.6);"
+          />
       </a>
     </div>
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
