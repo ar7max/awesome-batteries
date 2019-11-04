@@ -1,7 +1,8 @@
 # AwesomeBatteries
 
-To start your Phoenix server:
+Set environment variables `GITHUB_USER` and `GITHUB_PASS` for sync to work.
 
+To start a server:
   * Install dependencies with `mix deps.get`
   * Create and migrate your database with `mix ecto.setup`
   * Start Phoenix endpoint with `mix phx.server`
