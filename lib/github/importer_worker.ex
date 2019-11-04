@@ -26,7 +26,7 @@ defmodule AwesomeBatteries.GitHub.Importer.Worker do
                     {:ok, datetime, 0} = get_in(commit, ["commit", "author", "date"]) |> DateTime.from_iso8601()
                     datetime
                   end)
-                  |> Enum.sort(fn a, b -> a > b end)
+                  |> Enum.sort_by(fn date -> {date.year, date.month, date.day} end, &>=/2)
                   |> Enum.take(1)
 
                 %{ status: :ok, data: %{data | "updated_at" => updated_at}, repo: repo }
