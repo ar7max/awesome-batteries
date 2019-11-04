@@ -1,0 +1,17 @@
+
+<a href="<%= AwesomeBatteriesWeb.PageView.repo_url(@repo) %>"> <%= @repo.name %> </a>
+<span>
+    <img width="4%" src="https://static-cdn.jtvnw.net/emoticons/v1/114836/3.0"/>
+
+    <sub>        
+        <%= @repo.stargazers_count %>
+    </sub>
+</span>
+<span>
+    <img width="4%" src="https://image.freepik.com/free-icon/calendar-with-word-day_318-9710.jpg"/>
+    <sub>
+        <%= @repo.days %>
+    </sub>
+</span>
+
+<%= @repo.description |> Earmark.as_html! |> raw %>

@@ -1,0 +1,63 @@
+<h1 id="#Top">Awesome Batteries</h1>
+<section class="row">  
+  <div>
+      Elixir is awesome. And it has a vast awesome list: <a href="https://github.com/h4cc/awesome-elixir">h4cc/awesome-elixir</a>.
+      This is a mirror of it where each library is marked with number of
+      stars at <a href="https://github.com">Github</a> and number of days since
+      the last commit.
+  </div>
+</section>
+
+<section class="row">
+<p>
+  <h4> Stars: </h3>
+</p>
+
+  <ul>
+    <a href="/">
+      Any
+    </a>
+    <%= for min_stars <- [50, 100, 150, 200, 250, 350, 450, 550, 1000, 2000, 3000, 4000, 5000] do %>
+      <span>
+        <a href="/?min_stars=<%= min_stars %>">
+          ≥<%= min_stars %>
+        </a>
+      </span>
+    <% end %>
+  </ul>
+</section>
+
+<% 
+  repos_by_category = AwesomeBatteriesWeb.PageView.group_repos_by_categories(@repos)
+  categories = repos_by_category |> Map.keys() |> Enum.sort()
+  now = Date.utc_today()
+%>
+
+<section class="row">
+  <article class="column">
+    
+    <h1>Contents</h1>
+    <ul>
+      <%= for category <- categories do %>
+        <li>
+          <%= Phoenix.HTML.Link.link(category, to: "#" <> category ) %> 
+        </li>
+      <% end %>
+    </ul>
+  </article>
+</section>
+
+<%= for category <- categories do %>
+  <section class="row">
+    <article class="column">
+      <h2 id="<%= category %>"> <%= category %></h2>
+      <ul style="display: flex; flex-direction: column;">
+        <%= for repo <- Map.fetch!(repos_by_category, category) do %>
+          <li style="order: <%= Date.diff(now, repo.updated_at) %>">
+            <%= render "_repo_summary.html", repo: Map.put(repo, :days, Date.diff(now, repo.updated_at)), conn: @conn %>
+          </li>
+        <% end %>
+      </ul>
+    </article>
+  </section>
+<% end %>
