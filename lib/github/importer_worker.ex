@@ -38,7 +38,6 @@ defmodule AwesomeBatteries.GitHub.Importer.Worker do
       data -> %{ status: :error, data: data, repo: repo }
 
     end
-    IO.puts inspect repo_info
     {:reply, repo_info, state}
   end
 
