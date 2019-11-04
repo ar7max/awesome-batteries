@@ -4,7 +4,6 @@ defmodule AwesomeBatteriesWeb.PageView do
   def group_repos_by_categories([]), do: %{}
 
   def group_repos_by_categories(repos) do
-    IO.puts( inspect repos )
     repos
     |> Stream.map(fn r -> Map.take(r, [:name, :owner, :category, :updated_at, :stargazers_count, :description]) end)
     |> Stream.map(fn r ->
